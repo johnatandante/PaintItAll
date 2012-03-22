@@ -10,8 +10,14 @@ using System.Windows.Shapes;
 
 namespace PaintItAll.PaintTools
 {
-    public class SolidPaint : PaintTool
+    public class ShapePaint : PaintTool
     {
+
+        protected override PaintToolType ToolType
+        {
+            get { return PaintToolType.ShapeTool; }
+        }
+
         public int StrokeTickness { get; set; }
 
         public Line LineItem
@@ -19,7 +25,7 @@ namespace PaintItAll.PaintTools
             get { return (Line) ShapeItem; }
         }
 
-        public SolidPaint(int strokeTickness = 24)
+        public ShapePaint(int strokeTickness = 24)
         {
             StrokeTickness = strokeTickness;
 
@@ -64,5 +70,6 @@ namespace PaintItAll.PaintTools
         {
 
         }
+
     }
 }

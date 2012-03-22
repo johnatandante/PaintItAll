@@ -4,8 +4,9 @@ namespace PaintItAll.PaintTools
     public enum PaintToolType
     {
         LineaTool,
-        GradientTool,
+        BrushTool,
         PencilTool,
-        SolidTool,
+        ShapeTool,
+        CircleTool,
     }
 }

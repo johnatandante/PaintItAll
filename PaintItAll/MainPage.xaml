@@ -15,29 +15,40 @@
 	shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPageLoaded">
 
 	<!--LayoutRoot is the root grid where all page content is placed-->
-	<Grid x:Name="LayoutRoot" Background="Transparent" Width="Auto" Height="Auto">
+    <Grid x:Name="LayoutRoot" Background="Transparent" Width="Auto" Height="Auto" MouseMove="MainCanvasMouseMove" 
+                MouseLeftButtonDown="MainCanvasMouseLeftButtonDown" MouseLeftButtonUp="MainCanvasMouseLeftButtonUp">
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
 		<!--TitlePanel contains the name of the application and page title-->
-		<StackPanel x:Name="TitlePanel" Grid.Row="0" >
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Height="Auto" MinHeight="56" >
 			<TextBlock x:Name="PageTitle" Text="Paint It All" Style="{StaticResource PhoneTextTitle1Style}"/>
             <TextBlock x:Name="output" MinHeight="56"/>
         </StackPanel>
 
-        <ScrollViewer Width="Auto" Height="52">
+        <!--ScrollViewer Width="Auto" Grid.Row="1">
             <StackPanel x:Name="Toolbar" Grid.Row="1" Orientation="Horizontal" >
                 <Image x:Name="LineaTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
                 <Image x:Name="GradientTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
                 <Image x:Name="PencilTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
                 <Image x:Name="SolidTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
             </StackPanel>
-        </ScrollViewer>
-        <Grid Background="Transparent" Grid.Row="2">
-            <Canvas x:Name="MainCanvas" Background="#FFF7F7F7" MouseMove="MainCanvasMouseMove" 
-                MouseLeftButtonDown="MainCanvasMouseLeftButtonDown" MouseLeftButtonUp="MainCanvasMouseLeftButtonUp" />
-        </Grid>
+        </ScrollViewer-->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Width="Auto">
+            <ListBox x:Name="Toolbar" Loaded="Toolbar_Loaded" MinWidth="56" Background="AliceBlue" FlowDirection="LeftToRight">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Background="BlanchedAlmond">
+                        <Image Source="{Binding IconUri}" Tap="Image_Tap" MaxHeight="56" MaxWidth="56" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid Width="Auto" Height="Auto" MinWidth="400" >
+                <Canvas x:Name="MainCanvas" Background="#FFF7F7F7" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </phone:PhoneApplicationPage>

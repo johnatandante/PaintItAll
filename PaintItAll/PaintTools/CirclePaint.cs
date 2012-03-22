@@ -1,9 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace PaintItAll.PaintTools
 {
-    public class GradientPaint : PaintTool
+    public class CirclePaint : PaintTool
     {
+
+        protected override PaintToolType ToolType
+        {
+            get { return PaintToolType.CircleTool; }
+        }
 
         public override void UpdatePosition(object sender, System.Windows.Input.MouseEventArgs e)
         {
