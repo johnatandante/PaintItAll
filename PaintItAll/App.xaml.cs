@@ -51,6 +51,7 @@ namespace PaintItAll
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
         }
 
         // Code to execute when the application is launching (eg, from Start)

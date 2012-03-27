@@ -5,3 +5,6 @@
 /Proattiva.Utils.Phone/obj
 /Proattiva.Utils.Phone/Bin
 /Proattiva.Utils.Phone/Proattiva.Utils.Phone.csproj.user
+/PaintItAll.Model/Bin
+/PaintItAll.Model/obj
+/PaintItAll.Model/.gitignore

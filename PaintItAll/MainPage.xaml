@@ -6,17 +6,16 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Microsoft.Expression.Interactions"
-	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
 	x:Class="PaintItAll.MainPage"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
 	shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPageLoaded">
-
+   
 	<!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" Width="Auto" Height="Auto" MouseMove="MainCanvasMouseMove" 
-                MouseLeftButtonDown="MainCanvasMouseLeftButtonDown" MouseLeftButtonUp="MainCanvasMouseLeftButtonUp">
+    <Grid x:Name="LayoutRoot" Background="Transparent" Width="Auto" Height="Auto" >
 		<Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -36,19 +35,27 @@
                 <Image x:Name="SolidTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
             </StackPanel>
         </ScrollViewer-->
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Width="Auto">
-            <ListBox x:Name="Toolbar" Loaded="Toolbar_Loaded" MinWidth="56" Background="AliceBlue" FlowDirection="LeftToRight">
+
+        <Grid Width="Auto" Height="Auto" MinWidth="400" Grid.Row="1" >
+            <ListBox ItemsSource="{Binding ImageItems}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Background="BlanchedAlmond">
-                        <Image Source="{Binding IconUri}" Tap="Image_Tap" MaxHeight="56" MaxWidth="56" />
-                        </StackPanel>
+                        <TextBlock></TextBlock>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Grid Width="Auto" Height="Auto" MinWidth="400" >
-                <Canvas x:Name="MainCanvas" Background="#FFF7F7F7" />
-            </Grid>
-        </StackPanel>
+        </Grid>
+
     </Grid>
+    
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/add.png" Text="New"/>
+            <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/edit.png" Text="Edit"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="About" Click="AboutMenuItemClick"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

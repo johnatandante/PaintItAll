@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintItAll", "PaintItAll\Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proattiva.Utils.Phone", "Proattiva.Utils.Phone\Proattiva.Utils.Phone.csproj", "{41F4D7E6-76E4-489E-9C69-1A31A9CA21BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaintItAll.Model", "PaintItAll.Model\PaintItAll.Model.csproj", "{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,16 @@ Global
 		{41F4D7E6-76E4-489E-9C69-1A31A9CA21BF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{41F4D7E6-76E4-489E-9C69-1A31A9CA21BF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{41F4D7E6-76E4-489E-9C69-1A31A9CA21BF}.Release|Windows Phone.ActiveCfg = Release|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Debug|Windows Phone.ActiveCfg = Debug|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}.Release|Windows Phone.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

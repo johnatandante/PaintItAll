@@ -16,76 +16,33 @@ namespace PaintItAll
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        private PaintTool currentPaintTool = null;
-
-        List<PaintTool> paintToolCollection = new List<PaintTool>();
+        private List<object> ImageItems = new List<object>();
 
         public MainPage()
         {
             InitializeComponent();
 
-        }
+            // Show graphics profiling information while debugging.
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                // Display the current frame rate counters.
+                Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
-        private void MainCanvasMouseMove(object sender, MouseEventArgs e)
-        {
-            currentPaintTool = (PaintTool)Toolbar.SelectedItem;
-            if (currentPaintTool == null) return;
-            currentPaintTool.UpdatePosition(MainCanvas, e);
+                // Display the metro grid helper.
+                MetroGridHelper.IsVisible = true;
 
-        }
+            }
+
+        }        
 
         private void PhoneApplicationPageLoaded(object sender, RoutedEventArgs e)
         {
             // todo
-            Toolbar.ItemsSource = paintToolCollection;
-
-            paintToolCollection.AddRange(PaintTool.GetTools());
-            Toolbar.SelectedIndex = 0;
         }
 
-
-        private void MainCanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            currentPaintTool = (PaintTool)Toolbar.SelectedItem;
-            if (currentPaintTool == null) return;
-            currentPaintTool.StartEvent(MainCanvas, e);
-
+        private void AboutMenuItemClick(object sender, EventArgs e) {
+            NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
         }
-
-        private void MainCanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            // _lastLine = null;
-        }
-
-        private void ImageMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            try {
-                var icon = (Image) sender;
-                //currentPaintTool =
-                //    PaintTool.GetNewPaintTool((PaintToolType) Enum.Parse(typeof (PaintToolType), icon.Name, true));
-            } catch(Exception exc) {
-                MessageBox.Show(exc.Message, "Attenzione", MessageBoxButton.OK);
-                
-            }
-        }
-
-        private void Toolbar_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Image_Tap(object sender, GestureEventArgs e)
-        {
-            try
-            {
-                var icon = (Image)sender;
-                //currentPaintTool =
-                //    PaintTool.GetNewPaintTool((PaintToolType) Enum.Parse(typeof (PaintToolType), icon.Name, true));
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message, "Attenzione", MessageBoxButton.OK);
-
-            }
-        }
+        
     }
 }
