@@ -11,21 +11,25 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    BackKeyPress="PhoneApplicationPageBackKeyPress"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
 
     <Grid Width="Auto" Height="Auto" MinWidth="400" MouseMove="MainCanvasMouseMove" 
                 MouseLeftButtonDown="MainCanvasMouseLeftButtonDown" MouseLeftButtonUp="MainCanvasMouseLeftButtonUp" >
-        <Canvas x:Name="MainCanvas" DataContext="{Binding Source={StaticResource PhoneBackgroundColor}}" />
+        <Canvas x:Name="MainCanvas" DataContext="{Binding Source={StaticResource PhoneBackgroundColor}}" MinHeight="200" MinWidth="200" />
+        
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/LineaTool.png" Text="Line"/>
+            <!--shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/LineaTool.png" Text="Line"/>
             <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/ShapeTool.png" Text="Shape"/>
-            <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/PencilTool.png" Text="Pencil"/>
+            <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/PencilTool.png" Text="Pencil"/ -->
+            <shell:ApplicationBarIconButton IconUri="/Resources/dark/appbar.save.rest.png" Text="Save" Click="SaveImageClick"/>
+            
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="Choose color"/>
                 <shell:ApplicationBarMenuItem Text="Clear screen" Click="ApplicationBarMenuItem_Click"/>

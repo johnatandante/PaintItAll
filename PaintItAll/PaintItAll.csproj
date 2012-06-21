@@ -50,7 +50,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -71,6 +74,9 @@
     </Compile>
     <Compile Include="Components\ChooseColorItem.xaml.cs">
       <DependentUpon>ChooseColorItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ImageLibraryView.xaml.cs">
+      <DependentUpon>ImageLibraryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -100,6 +106,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\ImageLibraryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +132,79 @@
     </Content>
     <Content Include="Content\About\Data.xml" />
     <Content Include="YourLastAboutDialog.xml" />
+    <Content Include="Resources\dark\appbar.add.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\dark\appbar.back.rest.png" />
+    <Resource Include="Resources\dark\appbar.basecircle.rest.png" />
+    <Resource Include="Resources\dark\appbar.cancel.rest.png" />
+    <Resource Include="Resources\dark\appbar.check.rest.png" />
+    <Resource Include="Resources\dark\appbar.close.rest.png" />
+    <Resource Include="Resources\dark\appbar.delete.rest.png" />
+    <Resource Include="Resources\dark\appbar.download.rest.png" />
+    <Resource Include="Resources\dark\appbar.edit.rest.png" />
+    <Resource Include="Resources\dark\appbar.favs.addto.rest.png" />
+    <Resource Include="Resources\dark\appbar.favs.rest.png" />
+    <Content Include="Resources\dark\appbar.feature.camera.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\dark\appbar.feature.email.rest.png" />
+    <Resource Include="Resources\dark\appbar.feature.search.rest.png" />
+    <Resource Include="Resources\dark\appbar.feature.settings.rest.png" />
+    <Resource Include="Resources\dark\appbar.feature.video.rest.png" />
+    <Resource Include="Resources\dark\appbar.folder.rest.png" />
+    <Resource Include="Resources\dark\appbar.minus.rest.png" />
+    <Resource Include="Resources\dark\appbar.new.rest.png" />
+    <Resource Include="Resources\dark\appbar.next.rest.png" />
+    <Resource Include="Resources\dark\appbar.overflowdots.png" />
+    <Resource Include="Resources\dark\appbar.questionmark.rest.png" />
+    <Resource Include="Resources\dark\appbar.refresh.rest.png" />
+    <Content Include="Resources\dark\appbar.save.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\dark\appbar.share.rest.png" />
+    <Resource Include="Resources\dark\appbar.stop.rest.png" />
+    <Resource Include="Resources\dark\appbar.sync.rest.png" />
+    <Resource Include="Resources\dark\appbar.transport.ff.rest.png" />
+    <Resource Include="Resources\dark\appbar.transport.pause.rest.png" />
+    <Resource Include="Resources\dark\appbar.transport.play.rest.png" />
+    <Resource Include="Resources\dark\appbar.transport.rew.rest.png" />
+    <Resource Include="Resources\dark\appbar.upload.rest.png" />
+    <Resource Include="Resources\light\appbar.add.rest.png" />
+    <Resource Include="Resources\light\appbar.back.rest.png" />
+    <Resource Include="Resources\light\appbar.basecircle.rest.png" />
+    <Resource Include="Resources\light\appbar.cancel.rest.png" />
+    <Resource Include="Resources\light\appbar.check.rest.png" />
+    <Resource Include="Resources\light\appbar.close.rest.png" />
+    <Resource Include="Resources\light\appbar.delete.rest.png" />
+    <Resource Include="Resources\light\appbar.download.rest.png" />
+    <Resource Include="Resources\light\appbar.edit.rest.png" />
+    <Resource Include="Resources\light\appbar.favs.addto.rest.png" />
+    <Resource Include="Resources\light\appbar.favs.rest.png" />
+    <Resource Include="Resources\light\appbar.feature.camera.rest.png" />
+    <Resource Include="Resources\light\appbar.feature.email.rest.png" />
+    <Resource Include="Resources\light\appbar.feature.search.rest.png" />
+    <Resource Include="Resources\light\appbar.feature.settings.rest.png" />
+    <Resource Include="Resources\light\appbar.feature.video.rest.png" />
+    <Resource Include="Resources\light\appbar.folder.rest.png" />
+    <Resource Include="Resources\light\appbar.minus.rest.png" />
+    <Resource Include="Resources\light\appbar.new.rest.png" />
+    <Resource Include="Resources\light\appbar.next.rest.png" />
+    <Resource Include="Resources\light\appbar.overflowdots.png" />
+    <Resource Include="Resources\light\appbar.questionmark.rest.png" />
+    <Resource Include="Resources\light\appbar.refresh.rest.png" />
+    <Resource Include="Resources\light\appbar.save.rest.png" />
+    <Resource Include="Resources\light\appbar.share.rest.png" />
+    <Resource Include="Resources\light\appbar.stop.rest.png" />
+    <Resource Include="Resources\light\appbar.sync.rest.png" />
+    <Resource Include="Resources\light\appbar.transport.ff.rest.png" />
+    <Resource Include="Resources\light\appbar.transport.pause.rest.png" />
+    <Resource Include="Resources\light\appbar.transport.play.rest.png" />
+    <Resource Include="Resources\light\appbar.transport.rew.rest.png" />
+    <Resource Include="Resources\light\appbar.upload.rest.png" />
+    <Content Include="YourLastAboutDialog.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Resource Include="Resources\BrushTool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -141,6 +224,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PaintItAll.Model\PaintItAll.Model.csproj">
+      <Project>{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}</Project>
+      <Name>PaintItAll.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Proattiva.Utils.Phone\Proattiva.Utils.Phone.csproj">
       <Project>{41F4D7E6-76E4-489E-9C69-1A31A9CA21BF}</Project>
       <Name>Proattiva.Utils.Phone</Name>
