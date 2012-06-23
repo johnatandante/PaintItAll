@@ -20,7 +20,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>PaintItAll.xap</XapFilename>
+    <XapFilename>ArtItAll.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>PaintItAll.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
@@ -51,7 +51,6 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="System.Windows" />
@@ -72,11 +71,17 @@
     <Compile Include="ColorSettingPage.xaml.cs">
       <DependentUpon>ColorSettingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\ChooseColorItem.xaml.cs">
+    <Compile Include="ViewComponents\ChooseColorItem.xaml.cs">
       <DependentUpon>ChooseColorItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\ImageLibraryView.xaml.cs">
-      <DependentUpon>ImageLibraryView.xaml</DependentUpon>
+    <Compile Include="ViewComponents\ImageLibrary\ImageLibraryFlowItemView.xaml.cs">
+      <DependentUpon>ImageLibraryFlowItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewComponents\ImageLibrary\ImageLibraryFlowView.xaml.cs">
+      <DependentUpon>ImageLibraryFlowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewComponents\ImageLibrary\ImageLibraryRowItemView.xaml.cs">
+      <DependentUpon>ImageLibraryRowItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -84,14 +89,10 @@
     <Compile Include="PaintPage.xaml.cs">
       <DependentUpon>PaintPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PaintTools\BrushPaint.cs" />
-    <Compile Include="PaintTools\CirclePaint.cs" />
-    <Compile Include="PaintTools\LineaPaint.cs" />
-    <Compile Include="PaintTools\PaintTool.cs" />
-    <Compile Include="PaintTools\PaintToolType.cs" />
-    <Compile Include="PaintTools\PencilPaint.cs" />
-    <Compile Include="PaintTools\ShapePaint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewComponents\ImageLibrary\ImageLibraryRowView.xaml.cs">
+      <DependentUpon>ImageLibraryRowView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -102,11 +103,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ChooseColorItem.xaml">
+    <Page Include="ViewComponents\ChooseColorItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\ImageLibraryView.xaml">
+    <Page Include="ViewComponents\ImageLibrary\ImageLibraryFlowItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewComponents\ImageLibrary\ImageLibraryFlowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewComponents\ImageLibrary\ImageLibraryRowItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PaintPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewComponents\ImageLibrary\ImageLibraryRowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,11 +140,13 @@
     <Content Include="ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="ApplicationTileIcon.png" />
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\About\Data.xml" />
-    <Content Include="YourLastAboutDialog.xml" />
+    <Content Include="Content\About\Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\dark\appbar.add.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -202,6 +217,7 @@
     <Resource Include="Resources\light\appbar.transport.play.rest.png" />
     <Resource Include="Resources\light\appbar.transport.rew.rest.png" />
     <Resource Include="Resources\light\appbar.upload.rest.png" />
+    <None Include="SplashScreenImage.png" />
     <Content Include="YourLastAboutDialog.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -218,12 +234,18 @@
     <Resource Include="Resources\CircleTool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Content Include="SplashScreenImage.jpg" />
+    <Content Include="SplashScreenImage.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\ShapeTool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Phone.Controls.Toolkit\Microsoft.Phone.Controls.Toolkit.csproj">
+      <Project>{0754458A-7AFC-463A-B27D-2F6980522119}</Project>
+      <Name>Microsoft.Phone.Controls.Toolkit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PaintItAll.Model\PaintItAll.Model.csproj">
       <Project>{3ECD31F0-EEF3-4F96-B52F-295288A7B72A}</Project>
       <Name>PaintItAll.Model</Name>

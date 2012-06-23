@@ -18,6 +18,7 @@ namespace PaintItAll
         public ColorSettingPage()
         {
             InitializeComponent();
+            
         }
     }
 }

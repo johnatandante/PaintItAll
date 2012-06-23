@@ -9,8 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace System.Windows
-{
+namespace System.Windows {
     /// <summary>
     /// A utility class that overlays a designer-friendly grid on top of the 
     /// application frame, for use similar to the performance counters in
@@ -18,8 +17,9 @@ namespace System.Windows
     /// a number of squares that are 24x24, offset with 12px gutters, and all
     /// 24px away from the edge of the device.
     /// </summary>
-    public static class MetroGridHelper
-    {
+    public static class MetroGridHelper {
+        public static int MAGIC_NUMBER = 12;
+
         private static bool _visible;
         private static double _opacity = 0.15;
         private static Color _color = Colors.Red;
@@ -30,14 +30,11 @@ namespace System.Windows
         /// Gets or sets a value indicating whether the designer grid is 
         /// visible on top of the application's frame.
         /// </summary>
-        public static bool IsVisible
-        {
-            get
-            {
+        public static bool IsVisible {
+            get {
                 return _visible;
             }
-            set
-            {
+            set {
                 _visible = value;
                 UpdateGrid();
             }
@@ -46,11 +43,9 @@ namespace System.Windows
         /// <summary>
         /// Gets or sets the color to use for the grid's squares.
         /// </summary>
-        public static Color Color
-        {
+        public static Color Color {
             get { return _color; }
-            set
-            {
+            set {
                 _color = value;
                 UpdateGrid();
             }
@@ -59,11 +54,9 @@ namespace System.Windows
         /// <summary>
         /// Gets or sets a value indicating the opacity for the grid's squares.
         /// </summary>
-        public static double Opacity
-        {
+        public static double Opacity {
             get { return _opacity; }
-            set
-            {
+            set {
                 _opacity = value;
                 UpdateGrid();
             }
@@ -73,23 +66,17 @@ namespace System.Windows
         /// Updates the grid (if it already has been created) or initializes it
         /// otherwise.
         /// </summary>
-        private static void UpdateGrid()
-        {
-            if (_squares != null)
-            {
+        private static void UpdateGrid() {
+            if (_squares != null) {
                 var brush = new SolidColorBrush(_color);
-                foreach (var square in _squares)
-                {
+                foreach (var square in _squares) {
                     square.Fill = brush;
                 }
-                if (_grid != null)
-                {
+                if (_grid != null) {
                     _grid.Visibility = _visible ? Visibility.Visible : Visibility.Collapsed;
                     _grid.Opacity = _opacity;
                 }
-            }
-            else
-            {
+            } else {
                 BuildGrid();
             }
         }
@@ -97,13 +84,11 @@ namespace System.Windows
         /// <summary>
         /// Builds the grid.
         /// </summary>
-        private static void BuildGrid()
-        {
+        private static void BuildGrid() {
             _squares = new List<Rectangle>();
 
             var frame = Application.Current.RootVisual as Frame;
-            if (frame == null || VisualTreeHelper.GetChildrenCount(frame) == 0)
-            {
+            if (frame == null || VisualTreeHelper.GetChildrenCount(frame) == 0) {
                 Deployment.Current.Dispatcher.BeginInvoke(BuildGrid);
                 return;
             }
@@ -111,31 +96,24 @@ namespace System.Windows
             var child = VisualTreeHelper.GetChild(frame, 0);
             var childAsBorder = child as Border;
             var childAsGrid = child as Grid;
-            if (childAsBorder != null)
-            {
+            if (childAsBorder != null) {
                 // Not a pretty way to control the root visual, but I did not
                 // want to implement using a popup.
                 var content = childAsBorder.Child;
-                if (content == null)
-                {
+                if (content == null) {
                     Deployment.Current.Dispatcher.BeginInvoke(BuildGrid);
                     return;
                 }
                 childAsBorder.Child = null;
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
+                Deployment.Current.Dispatcher.BeginInvoke(() => {
                     Grid newGrid = new Grid();
                     childAsBorder.Child = newGrid;
                     newGrid.Children.Add(content);
                     PrepareGrid(frame, newGrid);
                 });
-            }
-            else if (childAsGrid != null)
-            {
+            } else if (childAsGrid != null) {
                 PrepareGrid(frame, childAsGrid);
-            }
-            else
-            {
+            } else {
                 Debug.WriteLine("Dear developer:");
                 Debug.WriteLine("Unfortunately the design overlay feature requires that the root frame visual");
                 Debug.WriteLine("be a Border or a Grid. So the overlay grid just isn't going to happen.");
@@ -150,8 +128,7 @@ namespace System.Windows
         /// </summary>
         /// <param name="frame">The phone application frame.</param>
         /// <param name="parent">The parent grid to insert the sub-grid into.</param>
-        private static void PrepareGrid(Frame frame, Grid parent)
-        {
+        private static void PrepareGrid(Frame frame, Grid parent) {
             var brush = new SolidColorBrush(_color);
 
             _grid = new Grid();
@@ -164,12 +141,9 @@ namespace System.Windows
             double height = frame.ActualHeight;
             double max = Math.Max(width, height);
 
-            for (int x = 24; x < /*width*/ max; x += 37)
-            {
-                for (int y = 24; y < /*height*/ max; y += 37)
-                {
-                    var rect = new Rectangle
-                    {
+            for (int x = 24; x < /*width*/ max; x += 37) {
+                for (int y = 24; y < /*height*/ max; y += 37) {
+                    var rect = new Rectangle {
                         Width = 25,
                         Height = 25,
                         VerticalAlignment = System.Windows.VerticalAlignment.Top,

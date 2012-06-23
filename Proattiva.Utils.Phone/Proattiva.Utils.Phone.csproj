@@ -56,9 +56,19 @@
     <Compile Include="LittleWatson.cs" />
     <Compile Include="MetroGridHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyChangedHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Common Libs\Microsoft.Phone.Controls.Toolkit.Design.dll" />
+    <Content Include="Common Libs\Microsoft.Phone.Controls.Toolkit.Design.pdb" />
+    <Content Include="Common Libs\Microsoft.Phone.Controls.Toolkit.dll" />
+    <Content Include="Common Libs\Microsoft.Phone.Controls.Toolkit.pdb" />
+    <Content Include="Common Libs\Microsoft.Phone.Controls.Toolkit.VisualStudio.Design.dll" />
+    <Content Include="Common Libs\Microsoft.Phone.Controls.Toolkit.VisualStudio.Design.pdb" />
+    <Content Include="Common Libs\Microsoft.Phone.Controls.Toolkit.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

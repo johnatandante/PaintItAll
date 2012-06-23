@@ -53,7 +53,21 @@
   <ItemGroup>
     <Compile Include="Colors\ColorItem.cs" />
     <Compile Include="ImageItem.cs" />
+    <Compile Include="PaintTools\BrushPaint.cs" />
+    <Compile Include="PaintTools\CirclePaint.cs" />
+    <Compile Include="PaintTools\LineaPaint.cs" />
+    <Compile Include="PaintTools\PaintTool.cs" />
+    <Compile Include="PaintTools\PaintToolType.cs" />
+    <Compile Include="PaintTools\PencilPaint.cs" />
+    <Compile Include="PaintTools\RectanglePaint.cs" />
+    <Compile Include="PaintTools\ShapePaint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Proattiva.Utils.Phone\Proattiva.Utils.Phone.csproj">
+      <Project>{41F4D7E6-76E4-489E-9C69-1A31A9CA21BF}</Project>
+      <Name>Proattiva.Utils.Phone</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

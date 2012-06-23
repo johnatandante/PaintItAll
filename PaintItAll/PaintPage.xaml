@@ -9,18 +9,37 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    Background="{StaticResource PhoneBackgroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     BackKeyPress="PhoneApplicationPageBackKeyPress"
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-
-    <Grid Width="Auto" Height="Auto" MinWidth="400" MouseMove="MainCanvasMouseMove" 
-                MouseLeftButtonDown="MainCanvasMouseLeftButtonDown" MouseLeftButtonUp="MainCanvasMouseLeftButtonUp" >
-        <Canvas x:Name="MainCanvas" DataContext="{Binding Source={StaticResource PhoneBackgroundColor}}" MinHeight="200" MinWidth="200" />
-        
+    <Grid x:Name="LayoutRoot" Margin="1" MaxWidth="480"
+          MouseMove="MainCanvasMouseMove" 
+          MouseLeftButtonDown="MainCanvasMouseLeftButtonDown" MouseLeftButtonUp="MainCanvasMouseLeftButtonUp">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="6"/>
+        </Grid.ColumnDefinitions>          
+        <Canvas Background="{StaticResource PhoneBackgroundBrush}" x:Name="MainCanvas" Grid.Column="1" Grid.Row="1"/>
     </Grid>
+
+    <!--ScrollViewer Width="Auto" Grid.Row="1">
+        <StackPanel x:Name="Toolbar" Grid.Row="1" Orientation="Horizontal" >
+            <Image x:Name="LineaTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
+            <Image x:Name="GradientTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
+            <Image x:Name="PencilTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
+            <Image x:Name="SolidTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
+        </StackPanel>
+    </ScrollViewer-->
 
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
@@ -28,11 +47,10 @@
             <!--shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/LineaTool.png" Text="Line"/>
             <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/ShapeTool.png" Text="Shape"/>
             <shell:ApplicationBarIconButton IconUri="/PaintItAll;component/Resources/PencilTool.png" Text="Pencil"/ -->
-            <shell:ApplicationBarIconButton IconUri="/Resources/dark/appbar.save.rest.png" Text="Save" Click="SaveImageClick"/>
-            
+            <shell:ApplicationBarIconButton IconUri="/Resources/dark/appbar.save.rest.png" Text="Save" Click="SaveImageClick"/>            
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="Choose color"/>
-                <shell:ApplicationBarMenuItem Text="Clear screen" Click="ApplicationBarMenuItem_Click"/>
+                <!--shell:ApplicationBarMenuItem Text="Choose color"/-->
+                <shell:ApplicationBarMenuItem Text="Clear screen" Click="ClearScreenmenuClick"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

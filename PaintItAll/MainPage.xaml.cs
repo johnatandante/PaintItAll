@@ -6,19 +6,20 @@ using Microsoft.Xna.Framework.Media;
 using PaintItAll.Model;
 using System.Windows;
 using Microsoft.Phone.Tasks;
+using System.Windows.Navigation;
 
 namespace PaintItAll {
     public partial class MainPage : PhoneApplicationPage {
 
-        private CameraCaptureTask cameraTask = new CameraCaptureTask();
-        protected List<ImageItem> ImageItems = new List<ImageItem>();
+        public static MainPage Instance;
+
+        protected List<object> ImageItems = new List<object>();
 
         public MainPage() {
             InitializeComponent();
 
             DataContext = this;
-
-            cameraTask.Completed += new EventHandler<PhotoResult>(CameraTaskCompleted);
+            Instance = this;
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached) {
@@ -34,15 +35,24 @@ namespace PaintItAll {
 
         private void PhoneApplicationPageLoaded(object sender, RoutedEventArgs e) {
             // Carico la lista delle immagini salvate in ImageItems
+            RefreshMediaList();
+        }
+
+        private void RefreshMediaList() {
             var library = new MediaLibrary();
             ImageItems.Clear();
 
+            var index = 0;
             foreach (var image in library.SavedPictures) {
-                ImageItems.Add(new ImageItem(image));
+                ImageItems.Add(new ImageItem(image, index++));
 
             }
 
-            ImageListBox.ItemsSource = ImageItems;
+            ImageItems.Reverse();
+            // ImageListBox.ItemsSource = ImageItems;
+            //ImageLibraryRowView.ItemsSource = ImageItems;
+            ImageLibraryView.ItemsSource = ImageItems;
+            ImageLibraryView.UpdateLayout();
         }
 
         private void AboutMenuItemClick(object sender, EventArgs e) {
@@ -50,36 +60,35 @@ namespace PaintItAll {
         }
 
         private void NewPaintClick(object sender, EventArgs e) {
+            NavigationService.Navigated += new NavigatedEventHandler(NavigationServiceNavigated);
             NavigationService.Navigate(new Uri("/PaintPage.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void ShotFromCameraPaintClick(object sender, EventArgs e) {            
-            cameraTask.Show();
-
+        private void ShotFromCameraPaintClick(object sender, EventArgs e) {
+            NavigationService.Navigated += new NavigatedEventHandler(NavigationServiceNavigated);
+            NavigationService.Navigate(new Uri(string.Format("/PaintPage.xaml?shot"), UriKind.RelativeOrAbsolute));
         }
 
-        void cameraTask_Completed(object sender, PhotoResult e) {
-            throw new NotImplementedException();
-        }
-
-        private void ImageListBoxTap(object sender, System.Windows.Input.GestureEventArgs e) {
-            var item = (ImageItem) ((ListBox) sender).SelectedItem;
-
-            // apro la canvas del disegno per disegnarci sopra
-            NavigationService.Navigate(new Uri(string.Format("/PaintPage.xaml?id={0}", item.UniqueId), UriKind.RelativeOrAbsolute));
-        }
-
-
-        private void CameraTaskCompleted (object sender, PhotoResult e) {
-            // apro la canvas del disegno per disegnarci sopra
-
-            if (e.TaskResult == TaskResult.OK) {
-                MediaLibrary medialibrary = new MediaLibrary();
-                var pic = medialibrary.SavePicture(string.Format("PIA{0}", (new Guid()).ToString()), e.ChosenPhoto);
-
-                var uniqueId = ImageItem.GetUniqueId(pic);                
-                NavigationService.Navigate(new Uri(string.Format("/PaintPage.xaml?shot={0}", uniqueId), UriKind.RelativeOrAbsolute));
+        private void NavigationServiceNavigated(object sender, NavigationEventArgs e) {
+            if (e.NavigationMode == NavigationMode.Back || e.NavigationMode == NavigationMode.Refresh) {
+                NavigationService.Navigated -= new NavigatedEventHandler(NavigationServiceNavigated);
+                RefreshMediaList();
             }
+        }
+
+        private void ImageLibraryTap(object sender, SelectionChangedEventArgs e) {
+            var items = e.AddedItems;
+            foreach (var item in e.AddedItems) {
+                // prendo il primo
+                var imageItem = (ImageItem) item;
+                if (imageItem != null) {
+                    NavigationService.Navigated += new NavigatedEventHandler(NavigationServiceNavigated);
+                    NavigationService.Navigate(new Uri(string.Format("/PaintPage.xaml?id={0}", imageItem.ListIndex), UriKind.RelativeOrAbsolute));
+                    break;
+                }
+
+            }
+
         }
     }
 }

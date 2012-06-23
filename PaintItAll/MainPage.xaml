@@ -6,56 +6,47 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:Custom="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Microsoft.Expression.Interactions"
-    xmlns:Components="clr-namespace:PaintItAll.Components"
+	xmlns:Components="clr-namespace:PaintItAll.ViewComponents"
+	xmlns:ImageLibraryViewComponents="clr-namespace:PaintItAll.ViewComponents.ImageLibrary"
 	mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
 	x:Class="PaintItAll.MainPage"
 	FontFamily="{StaticResource PhoneFontFamilyNormal}"
 	FontSize="{StaticResource PhoneFontSizeNormal}"
 	Foreground="{StaticResource PhoneForegroundBrush}"
 	SupportedOrientations="Portrait" Orientation="Portrait"
-	shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPageLoaded"  >
+	shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPageLoaded">
    
 	<!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent" Width="Auto" Height="Auto" >
+	<Grid x:Name="LayoutRoot" Background="Transparent" Width="Auto" Height="Auto" >
 		<Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+        </Grid.RowDefinitions>
 
 		<!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Height="Auto" MinHeight="56" >
-			<TextBlock x:Name="PageTitle" Text="Paint It All" Style="{StaticResource PhoneTextTitle1Style}"/>
-            <TextBlock x:Name="output" MinHeight="56"/>
-        </StackPanel>
+		<StackPanel x:Name="TitlePanel" Grid.Row="0" Height="Auto" MinHeight="56" >
+			<TextBlock x:Name="PageTitle" Text="Art It All" Style="{StaticResource PhoneTextTitle1Style}"/>
+			<TextBlock x:Name="output" MinHeight="56"/>
+		</StackPanel>
 
-        <!--ScrollViewer Width="Auto" Grid.Row="1">
-            <StackPanel x:Name="Toolbar" Grid.Row="1" Orientation="Horizontal" >
-                <Image x:Name="LineaTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
-                <Image x:Name="GradientTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
-                <Image x:Name="PencilTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
-                <Image x:Name="SolidTool" Source="/PaintItAll;component/Resources/linea.png" MouseLeftButtonDown="ImageMouseLeftButtonDown" />
-            </StackPanel>
-        </ScrollViewer-->
-
-        <Grid Width="Auto" Height="Auto" MinWidth="400" Grid.Row="1" >
-            <ListBox x:Name="ImageListBox" ItemsSource="{Binding ImageItems}" Tap="ImageListBoxTap">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Components:ImageLibraryView />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
-    </Grid>
-    
-    <!--Sample code showing usage of ApplicationBar-->
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Resources/dark/appbar.add.rest.png" Text="New" Click="NewPaintClick"/>
-            <shell:ApplicationBarIconButton IconUri="/Resources/dark/appbar.feature.camera.rest.png" Text="Shot" Click="ShotFromCameraPaintClick"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="About" Click="AboutMenuItemClick"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+		<Grid Width="Auto" Height="Auto" MinWidth="400" Grid.Row="1" >
+			<Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <!--RowDefinition Height="*"/-->
+            </Grid.RowDefinitions>
+            <!--ImageLibraryViewComponents:ImageLibraryRowView x:Name="ImageLibraryView" Grid.Row="0" SelectionChanged="ImageLibraryTap" /-->
+            <ImageLibraryViewComponents:ImageLibraryFlowView x:Name="ImageLibraryView" Grid.Row="1" SelectionChanged="ImageLibraryTap" MaxWidth="400" />
+		</Grid>
+	</Grid>
+	
+	<!--Sample code showing usage of ApplicationBar-->
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+			<shell:ApplicationBarIconButton IconUri="/Resources/dark/appbar.add.rest.png" Text="New" Click="NewPaintClick"/>
+			<shell:ApplicationBarIconButton IconUri="/Resources/dark/appbar.feature.camera.rest.png" Text="Shot" Click="ShotFromCameraPaintClick"/>
+			<shell:ApplicationBar.MenuItems>
+				<shell:ApplicationBarMenuItem Text="About" Click="AboutMenuItemClick"/>
+			</shell:ApplicationBar.MenuItems>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

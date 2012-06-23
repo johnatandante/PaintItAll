@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="PaintItAll.ViewComponents.ImageLibrary.ImageLibraryFlowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:View="clr-namespace:PaintItAll.ViewComponents.ImageLibrary"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="240">
+    
+    <Grid x:Name="LayoutRoot" Width="Auto">
+        <ScrollViewer Width="Auto">
+            <ItemsControl x:Name="ViewListPanel" Tap="ImageListBoxTap" ItemsSource="{Binding ItemsSource}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate >
+                        <toolkit:WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <View:ImageLibraryFlowItemView />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

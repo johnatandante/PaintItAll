@@ -14,11 +14,12 @@ using Microsoft.Phone;
 using System.Windows.Media.Imaging;
 using Microsoft.Xna.Framework.Media;
 using System.Threading;
+using Proattiva.Utils.Phone;
 
 namespace PaintItAll.Model {
-    public class ImageItem : INotifyPropertyChanged {
-        // Declare the event
-        public event PropertyChangedEventHandler PropertyChanged;
+    public class ImageItem : PropertyChangedBaseClass {
+
+        public int ListIndex { get; set; }
 
         public string UniqueId {
             get {
@@ -55,25 +56,17 @@ namespace PaintItAll.Model {
 
         public string Descrizione {
             get {
-                return string.Format("({0}x{1} Created on {2} - {3})",Image.Width, Image.Height, Image.Date.ToShortDateString(), Image.Date.ToShortTimeString());
+                return string.Format("({0}x{1} Created on {2} - {3})", Image.Width, Image.Height, Image.Date.ToShortDateString(), Image.Date.ToShortTimeString());
             }
         }
 
-        // Create the OnPropertyChanged method to raise the event
-        protected void OnPropertyChanged(string name) {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
-        public ImageItem(Picture picture) {
+        public ImageItem(Picture picture, int listIndex = -1) {
             Image = picture;
-
+            ListIndex = listIndex;
         }
 
         public static string GetUniqueId(Picture pic) {
-            return pic.GetHashCode().ToString();
+            return string.Format("{0}.{1}", pic.GetHashCode(), pic.Date.ToFileTimeUtc());
         }
     }
 }

@@ -8,3 +8,5 @@
 /PaintItAll.Model/Bin
 /PaintItAll.Model/obj
 /PaintItAll.Model/.gitignore
+/Microsoft.Phone.Controls.Toolkit/obj
+/Bin
