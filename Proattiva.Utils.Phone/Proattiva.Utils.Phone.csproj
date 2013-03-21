@@ -56,7 +56,7 @@
     <Compile Include="LittleWatson.cs" />
     <Compile Include="MetroGridHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyChangedHandler.cs" />
+    <Compile Include="PropertyChangedBaseClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
