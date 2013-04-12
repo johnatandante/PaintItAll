@@ -34,8 +34,8 @@
                 <RowDefinition Height="*"/>
                 <!--RowDefinition Height="*"/-->
             </Grid.RowDefinitions>
-            <!--ImageLibraryViewComponents:ImageLibraryRowView x:Name="ImageLibraryView" Grid.Row="0" SelectionChanged="ImageLibraryTap" /-->
-            <ImageLibraryViewComponents:ImageLibraryFlowView x:Name="ImageLibraryView" Grid.Row="1" SelectionChanged="ImageLibraryTap" MaxWidth="400" />
+            <ImageLibraryViewComponents:ImageLibraryFlowView x:Name="ImageLibraryView" Grid.Row="1" 
+                                                             SelectionChanged="ImageLibraryTap" MaxWidth="400" />
 		</Grid>
 	</Grid>
 	

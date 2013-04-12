@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PaintItAll.Model;
@@ -8,32 +9,23 @@ namespace PaintItAll.ViewComponents.ImageLibrary {
         
         public event SelectionChangedEventHandler SelectionChanged;
 
-        private List<object> _itemsSource;
-        public List<object> ItemsSource {
+        public ViewImageDataContext ImageDataContext = new ViewImageDataContext();
+
+        public ObservableCollection<object> ItemsSource {
             get {
-                return _itemsSource;
+                return ImageDataContext.ImageSource;
             }
             set {
-                _itemsSource = value;
-                //ViewListStackPanel.Children.Clear();
-
-                //foreach (var item in _itemsSource) {
-                //    var itemView = new ImageLibraryFlowItemView();
-                //    itemView.DataContext = item;
-                    
-                //    ViewListStackPanel.Children.Add(itemView);
-                //}
-
-                ViewListPanel.ItemsSource = ItemsSource;                
+                ImageDataContext.ImageSource = value;                
+                // ViewListPanel.ItemsSource = ItemsSource;
                 ViewListPanel.UpdateLayout();
             }
         }
 
         public ImageLibraryFlowView() {
             InitializeComponent();
-            DataContext = this;
-            
-            // ViewListPanel.ItemsSource = ItemsSource;
+            DataContext = ImageDataContext;
+            ViewListPanel.ItemsSource = ImageDataContext.ImageSource;
         }
 
         private void ImageListBoxTap(object sender, GestureEventArgs e) {            

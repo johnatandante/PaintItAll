@@ -13,7 +13,7 @@
     
     <Grid x:Name="LayoutRoot" Width="Auto">
         <ScrollViewer Width="Auto">
-            <ItemsControl x:Name="ViewListPanel" Tap="ImageListBoxTap" ItemsSource="{Binding ItemsSource}">
+            <ItemsControl x:Name="ViewListPanel" Tap="ImageListBoxTap" ItemsSource="{Binding ImageSource}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate >
                         <toolkit:WrapPanel Orientation="Horizontal" />

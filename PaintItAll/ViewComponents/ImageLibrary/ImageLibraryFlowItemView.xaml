@@ -9,7 +9,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="240" d:DesignWidth="240">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot" Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="6"/>
             <RowDefinition Height="*"/>
@@ -21,7 +21,8 @@
             <ColumnDefinition Width="6"/>
         </Grid.ColumnDefinitions>
 
-        <Image Source="{Binding ImgStream}" Grid.Column="1" Grid.Row="1" MaxHeight="120" MaxWidth="120" Stretch="UniformToFill" />
+        <Image Source="{Binding ImgStream}" Grid.Column="1" Grid.Row="1" MaxHeight="120" MaxWidth="120" 
+               Stretch="UniformToFill" />
 
     </Grid>
     

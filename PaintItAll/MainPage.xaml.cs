@@ -7,19 +7,22 @@ using PaintItAll.Model;
 using System.Windows;
 using Microsoft.Phone.Tasks;
 using System.Windows.Navigation;
+using System.Collections.ObjectModel;
 
 namespace PaintItAll {
     public partial class MainPage : PhoneApplicationPage {
 
         public static MainPage Instance;
 
-        protected List<object> ImageItems = new List<object>();
+        protected ObservableCollection<object> ImageItems = new ObservableCollection<object>();
 
         public MainPage() {
             InitializeComponent();
 
             DataContext = this;
             Instance = this;
+
+            ImageLibraryView.ItemsSource = ImageItems;
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached) {
@@ -44,14 +47,12 @@ namespace PaintItAll {
 
             var index = 0;
             foreach (var image in library.SavedPictures) {
-                ImageItems.Add(new ImageItem(image, index++));
+                ImageItems.Insert(0, new ImageItem(image, index++));
 
             }
 
-            ImageItems.Reverse();
             // ImageListBox.ItemsSource = ImageItems;
-            //ImageLibraryRowView.ItemsSource = ImageItems;
-            ImageLibraryView.ItemsSource = ImageItems;
+            // ImageLibraryRowView.ItemsSource = ImageItems;
             ImageLibraryView.UpdateLayout();
         }
 
@@ -72,7 +73,7 @@ namespace PaintItAll {
         private void NavigationServiceNavigated(object sender, NavigationEventArgs e) {
             if (e.NavigationMode == NavigationMode.Back || e.NavigationMode == NavigationMode.Refresh) {
                 NavigationService.Navigated -= new NavigatedEventHandler(NavigationServiceNavigated);
-                RefreshMediaList();
+                //RefreshMediaList();
             }
         }
 

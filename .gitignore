@@ -10,3 +10,9 @@
 /PaintItAll.Model/.gitignore
 /Microsoft.Phone.Controls.Toolkit/obj
 /Bin
+/Backup
+_UpgradeReport_Files
+/*.suo
+/PaintItAll.Model/*.user
+/UpgradeLog.XML
+/UpgradeLog.htm
